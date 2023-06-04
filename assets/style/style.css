@@ -1,0 +1,148 @@
+body {
+    height: 600px;
+    /* background-color: rgba(0, 0, 0, 1); */
+    width: 100%;
+    margin: 0 auto;
+}
+
+body::-webkit-scrollbar {
+    width: 3px;
+    background-color: #f9f9fd;
+}
+
+.title {
+    text-align: center;
+    color: white;
+}
+
+.bold {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+span {
+    font-weight: 400;
+}
+
+.more-info,
+.btn-back {
+    padding-top: 10px;
+    color:rgb(9, 82, 150);
+    background-color: none;
+    border: none;
+    background: none;
+}
+
+.more-info:hover {
+    color: rgb(6, 58, 108);
+    text-decoration: underline;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    overflow-x: scroll;
+}
+
+.cards::-webkit-scrollbar {
+    width: 0;
+}
+
+.card-item {
+    width: 38vw;
+    background-color: white;
+    padding: 1%;
+    margin: 1%;
+    border-radius: 20px 5px;
+}
+
+.card {
+    width: 90%;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.avatar {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.flipper {
+    position: relative;
+}
+
+.back {
+display: none;
+    font-weight: 400;
+}
+
+.back > .info {
+    font-size: 16px;
+    line-height: 23px;
+    height: fit-content;
+    font-weight: 400px;
+    opacity: 1;
+    margin: 0;
+}
+
+.showcase{
+    text-align: center;
+    position: absolute;
+    width: 200px;
+    align-self: center;
+    top:90%;
+    left:30%;
+    transform:translateY(-50%) translateX(-50%);
+}
+
+.rating-system {
+    width:auto;
+    display:inline-block;
+    position: relative;
+} 
+
+input{
+    /* display:none; */
+}
+
+label {
+    float: right;
+    display:inline-block;
+    width:20px;
+    height:5px;
+    background:#ccc;
+    margin:4px;
+    position: relative;
+    transition:all .3s;
+}   
+
+.rating-system label{
+    width:10px;
+    height:10px;
+    margin:0 10px;
+}
+.rating-system label:hover,
+.rating-system label:hover ~ label
+{
+    background:crimson;
+    border-radius:100%
+}
+
+.rating-system input:checked ~ label{
+    border-radius: 100%;
+    background: crimson;
+    box-shadow: 6px 0 crimson, 3px 1px 0 7px #222,3px 1px 0 9px crimson;
+}
+
+.rating-system input:checked ~ label:after {
+    content: '';  
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: crimson;
+    transform: rotate(45deg);
+    border-bottom-left-radius: 15%;
+    top: 30%;
+    left: 3px;
+}
