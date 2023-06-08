@@ -20,43 +20,50 @@
 //             // console.log(el.body);
 //             addElement(createHTML(el));
 //         }))
-//     .catch(console.log('Oops, somthing wrong :('));
+//     .catch((err) => console.log('Oops, somthing wrong :(', err));
 // }
 
 // getPosts();
 
 
-// // задание 2
-// const btnPost = document.querySelector('.post-btn'); // получаем кнопку
-// function createHTML(obj) { // создаем элемент и разметку
-//     const postsDiv = document.createElement('div');
-//     postsDiv.innerHTML = `<div class="post-item"><h3>${obj.title}</h3><p>${obj.body}</p></div>`;
-//     return postsDiv; // возвращаем элемент
-// }
+// задание 2
+const btnPost = document.querySelector('.post-btn'); // получаем кнопку
+function createHTML(obj) { // создаем элемент и разметку
+    const postsDiv = document.createElement('div');
+    postsDiv.innerHTML = `<div class="post-item"><h3>${obj.title}</h3><p>${obj.body}</p></div>`;
+    return postsDiv; // возвращаем элемент
+}
 
-// function addElement(func) {
-//     const wrapper = document.querySelector('.wrapper'); //получаем обертку
-//     wrapper.appendChild(func); // добавляем элемент на страницу
-// }
+function addElement(func) {
+    const wrapper = document.querySelector('.wrapper'); //получаем обертку
+    wrapper.appendChild(func); // добавляем элемент на страницу
+}
 
-// function createPost() {
+function createPost() {
     
-//     const titleInput = document.querySelector('.post-title').value; // получаем текст из инпутов
-//     const bodyInput = document.querySelector('.post-body').value;
+    let titleInput = document.querySelector('.post-title').value; // получаем текст из инпутов
+    let bodyInput = document.querySelector('.post-body').value;
 
-//     fetch('https://jsonplaceholder.typicode.com/posts', { // добавляем пост на страницу
-//     method: 'POST',
-//     body: JSON.stringify({
-//         title: titleInput,
-//         body: bodyInput,
-//         userId: 1
-//     }),
-//     headers: {
-//         "Content-type": "application/json; charset=UTF-8"
-//     }
-//     })
-//     .then(response => response.json())
-//     .then(json => addElement(createHTML(json)));
-// }
+    if(titleInput != '' && bodyInput != '') {
 
-// btnPost.addEventListener('click', createPost); // обработчик на клик
+        fetch('https://jsonplaceholder.typicode.com/posts', { // добавляем пост на страницу
+        method: 'POST',
+        body: JSON.stringify({
+            title: titleInput,
+            body: bodyInput,
+            userId: 1
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+        })
+        .then(response => response.json())
+        .then(json => addElement(createHTML(json)))
+        .catch((err) => console.log('Не удалось получить данные с сервера', err.message));
+    } else {
+        console.log('вы не заполнили оба поля');
+    }
+    
+}
+
+btnPost.addEventListener('click', createPost); // обработчик на клик
